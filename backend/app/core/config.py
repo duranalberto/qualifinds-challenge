@@ -9,6 +9,8 @@ class Settings(BaseSettings):
         "http://localhost:3100",
         "http://127.0.0.1:3100",
     ]
+    ollama_base_url: str = "http://localhost:11434"
+    ollama_model: str = "llama3.1:8b"
 
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 

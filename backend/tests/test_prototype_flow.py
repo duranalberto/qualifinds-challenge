@@ -2,7 +2,6 @@ from fastapi.testclient import TestClient
 
 from app.main import create_app
 
-
 AUTH_HEADERS = {
     "Authorization": "Bearer demo-token",
     "X-Tenant-Id": "tenant_acme",
@@ -29,6 +28,7 @@ def test_prototype_can_plan_and_execute_workflow() -> None:
     workflow = plan_response.json()
     assert workflow["workflow_id"].startswith("wf_")
     assert len(workflow["steps"]) >= 3
+    assert "name" in workflow
 
     execute_response = client.post(
         f"/workflows/{workflow['workflow_id']}/execute",

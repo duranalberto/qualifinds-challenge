@@ -141,19 +141,6 @@ button:disabled {
   justify-content: flex-end;
 }
 
-.steps {
-  display: grid;
-  gap: 12px;
-  margin: 0;
-  padding-left: 20px;
-}
-
-.steps li {
-  padding: 12px;
-  border: 1px solid #e3ebe7;
-  border-radius: 8px;
-}
-
 .steps p {
   margin-top: 4px;
   color: #53675f;
@@ -187,9 +174,538 @@ code {
   font-weight: 700;
 }
 
-.badge.failed {
-  background: #fff5f5;
-  color: #8a1f1f;
+.workflowId {
+  margin-top: 2px;
+  color: #4d625b;
+  font-family: ui-monospace, monospace;
+  font-size: 12px;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  justify-self: auto;
+  border: 1px solid #b8c8c0;
+  border-radius: 999px;
+  padding: 6px 12px;
+  color: #31433c;
+  background: #f0f5f3;
+  font-size: 13px;
+  font-weight: 400;
+  cursor: pointer;
+  text-align: left;
+}
+
+.chip:hover {
+  background: #e0ece8;
+}
+
+.chip--active {
+  border-color: #0f6b5f;
+  background: #e0ece8;
+  color: #0f6b5f;
+  font-weight: 700;
+}
+
+.stepHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.stepDuration {
+  color: #4d625b;
+  font-size: 13px;
+}
+
+.stepOutput {
+  margin-top: 4px;
+  color: #27443b;
+  font-size: 13px;
+}
+
+.skippedLabel {
+  margin-top: 4px;
+  color: #8a9e97;
+  font-size: 13px;
+  font-style: italic;
+}
+
+.step--skipped {
+  opacity: 0.65;
+}
+
+.badge--sm {
+  font-size: 12px;
+  padding: 3px 8px;
+}
+
+.historyPanel {
+  margin-top: 24px;
+  border: 1px solid #d8e2dd;
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 20px;
+}
+
+.historyTitle {
+  margin-bottom: 12px;
+}
+
+.historyList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.historyItem {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid #e3ebe7;
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+.historyId {
+  font-family: ui-monospace, monospace;
+  color: #27443b;
+}
+
+.historyWorkflow {
+  font-family: ui-monospace, monospace;
+  color: #4d625b;
+}
+
+.historyDuration {
+  color: #4d625b;
+}
+
+.historyTime {
+  color: #8a9e97;
+  margin-left: auto;
+}
+
+/* ── Detection banner ───────────────────────────────────────────────────── */
+
+.detectionBanner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  animation: fadeSlideIn 0.2s ease;
+}
+
+.detectionBanner--high {
+  background: #e6f4f1;
+  border: 1px solid #a8d4cc;
+  color: #0f6b5f;
+}
+
+.detectionBanner--medium {
+  background: #fdf8ed;
+  border: 1px solid #e0d0a0;
+  color: #7a5800;
+}
+
+.detectionLabel {
+  font-weight: 700;
+}
+
+.detectionWorkflow {
+  font-weight: 600;
+}
+
+.detectionDivider {
+  color: #8a9e97;
+}
+
+.detectionIntegrations {
+  display: flex;
+  gap: 4px;
+}
+
+.detectionIcon {
+  font-size: 16px;
+  line-height: 1;
+}
+
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Textarea accent border on detection */
+.textarea--high   { border-color: #0f6b5f; }
+.textarea--medium { border-color: #c89a00; }
+
+/* ── Company select ──────────────────────────────────────────────────────── */
+
+.companySelect {
+  border: 1px solid #b8c8c0;
+  border-radius: 6px;
+  padding: 8px 10px;
+  font: inherit;
+  font-size: 13px;
+  background: #f0f5f3;
+  color: #31443c;
+  cursor: pointer;
+}
+
+.companySelect:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ── Step card (plan & execution) ────────────────────────────────────────── */
+
+.steps {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.stepCard {
+  display: flex;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid #e3ebe7;
+  border-radius: 8px;
+  background: #fafcfb;
+}
+
+.stepCardIndex {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #e0ece8;
+  color: #31443c;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+.stepCardIndex--succeeded { background: #c8eee8; color: #0f6b5f; }
+.stepCardIndex--failed    { background: #fde8e8; color: #8a1f1f; }
+.stepCardIndex--skipped   { background: #f0f0f0; color: #8a9e97; }
+
+.stepCardBody {
+  flex: 1;
+  min-width: 0;
+}
+
+.stepCardHeader {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.stepCardIcon {
+  font-size: 16px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.stepCardMeta {
+  margin-top: 3px;
+  color: #53675f;
+  font-size: 13px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.stepCardIntegration {
+  font-weight: 600;
+}
+
+.stepCardDot {
+  color: #b8c8c0;
+}
+
+.stepCondition {
+  display: inline-block;
+  margin-top: 6px;
+  border-radius: 4px;
+  padding: 3px 6px;
+  background: #edf3f1;
+  color: #27443b;
+  font-size: 12px;
+}
+
+/* ── Execution header ────────────────────────────────────────────────────── */
+
+.executionMeta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.executionDuration {
+  font-size: 13px;
+  color: #4d625b;
+}
+
+/* ── Badge variants ──────────────────────────────────────────────────────── */
+
+.badge--succeeded { background: #c8eee8; color: #0f6b5f; }
+.badge--failed    { background: #fff5f5; color: #8a1f1f; }
+.badge--queued,
+.badge--running   { background: #fdf8ed; color: #7a5800; }
+.badge--cancelled { background: #f0f0f0; color: #6a6a6a; }
+
+/* ── Step count pill ─────────────────────────────────────────────────────── */
+
+.stepCount {
+  font-size: 13px;
+  color: #4d625b;
+  border: 1px solid #d8e2dd;
+  border-radius: 999px;
+  padding: 4px 10px;
+}
+
+/* ── History status icon ─────────────────────────────────────────────────── */
+
+.historyStatus {
+  font-size: 13px;
+  font-weight: 700;
+  width: 18px;
+  text-align: center;
+}
+
+.historyStatus.badge--succeeded { color: #0f6b5f; }
+.historyStatus.badge--failed    { color: #8a1f1f; }
+
+/* ── Chips row + browse button ───────────────────────────────────────────── */
+
+.chipsRow {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.browseBtn {
+  background: none;
+  border: none;
+  color: #0f6b5f;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 0;
+  cursor: pointer;
+  justify-self: auto;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.browseBtn:hover {
+  color: #0a4f46;
+}
+
+/* ── Catalog modal ───────────────────────────────────────────────────────── */
+
+.catalogOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.38);
+  backdrop-filter: blur(3px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.catalogPanel {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
+  max-width: 700px;
+  width: 100%;
+  max-height: 82vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: fadeSlideIn 0.16s ease;
+}
+
+.catalogHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid #e3ebe7;
+  flex-shrink: 0;
+}
+
+.catalogTitle {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.catalogSubtitle {
+  margin: 3px 0 0;
+  color: #4d625b;
+  font-size: 13px;
+}
+
+.catalogClose {
+  background: #f0f5f3;
+  color: #31443c;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  flex-shrink: 0;
+  justify-self: auto;
+}
+
+.catalogClose:hover {
+  background: #e0ece8;
+}
+
+.catalogBody {
+  overflow-y: auto;
+  padding: 20px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.catalogSection {}
+
+.catalogSectionTitle {
+  font-size: 12px;
+  font-weight: 700;
+  color: #53675f;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.catalogCount {
+  font-size: 11px;
+  font-weight: 600;
+  background: #e0ece8;
+  color: #31443c;
+  border-radius: 999px;
+  padding: 1px 7px;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.catalogGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+  gap: 10px;
+}
+
+.catalogGrid--tools {
+  grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+}
+
+.catalogCard {
+  border: 1px solid #e3ebe7;
+  border-radius: 8px;
+  padding: 14px;
+  background: #fafcfb;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.catalogCard--workflow {
+  cursor: pointer;
+  transition: border-color 0.12s, background 0.12s, box-shadow 0.12s;
+}
+
+.catalogCard--workflow:hover {
+  border-color: #0f6b5f;
+  background: #f0f8f6;
+  box-shadow: 0 2px 8px rgba(15, 107, 95, 0.1);
+}
+
+.catalogCard--tool {
+  cursor: default;
+}
+
+.catalogCardEmoji {
+  font-size: 22px;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.catalogCardName {
+  font-size: 13px;
+  font-weight: 700;
+  color: #172026;
+}
+
+.catalogCardTrigger {
+  font-size: 11px;
+  color: #8a9e97;
+  font-family: ui-monospace, monospace;
+  margin: 0;
+}
+
+.catalogCardDesc {
+  font-size: 12px;
+  color: #4d625b;
+  line-height: 1.45;
+  margin: 4px 0 4px;
+}
+
+.catalogCardIntegrations {
+  display: flex;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.catalogCardIntIcon {
+  font-size: 15px;
+  line-height: 1;
+}
+
+.catalogCardActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 6px;
+}
+
+.actionTag {
+  font-size: 11px;
+  font-family: ui-monospace, monospace;
+  background: #edf3f1;
+  color: #27443b;
+  border-radius: 4px;
+  padding: 2px 5px;
 }
 
 @media (max-width: 640px) {
@@ -201,5 +717,23 @@ code {
   .resultsHeader {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .historyItem {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .historyTime {
+    margin-left: 0;
+  }
+
+  .catalogOverlay {
+    padding: 12px;
+  }
+
+  .catalogGrid,
+  .catalogGrid--tools {
+    grid-template-columns: 1fr 1fr;
   }
 }
